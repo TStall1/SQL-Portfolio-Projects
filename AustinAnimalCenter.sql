@@ -6,6 +6,10 @@
 --Outcome
 --AustinAnimalCenter - joined and partitioned
 
+-- Download Austin Animal Center Intakes CSV file
+-- https://data.austintexas.gov/Health-and-Community-Services/Austin-Animal-Center-Intakes/wter-evkm
+
+
 
 SELECT *
 FROM dbo.Animal_Intakes
