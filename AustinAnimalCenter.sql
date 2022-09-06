@@ -9,7 +9,7 @@
 -- Download Austin Animal Center Intakes CSV file
 -- https://data.austintexas.gov/Health-and-Community-Services/Austin-Animal-Center-Intakes/wter-evkm
 
-
+-- Download Austin Animal Center Outcomes CSV file
 
 SELECT *
 FROM dbo.Animal_Intakes
