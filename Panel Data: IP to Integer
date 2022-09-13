@@ -1,0 +1,32 @@
+USE Project;
+
+SELECT *
+INTO #UserPanel
+FROM UserPanel
+
+-- Add columns and parse IP address
+
+ALTER TABLE #UserPanel
+ADD IP_1 bigint, IP_2 bigint, IP_3 bigint, IP_4 bigint
+
+UPDATE #UserPanel
+SET IP_1 = PARSENAME(ip, 4), IP_2 = PARSENAME(ip, 3), IP_3 = PARSENAME(ip, 2), IP_4 = PARSENAME(ip, 1)
+
+-- Add column and convert IP address to IP number
+
+ALTER TABLE #UserPanel ADD ip2int bigint
+
+UPDATE #UserPanel
+SET ip2int = (16777216*IP_1) + 
+		(65536*IP_2) + 
+		(256*IP_3) + 
+		(IP_4)
+
+
+-- Join #UserPanel to ipDatabase to identify the corresponding Country
+
+SELECT a.User_ID, a.IP, a.url, CAST(a.Timestamp as date) as date, a.os, a.browser, 
+		a.ip2int, b.StartIPNum, b.EndIPNum, b.Country
+FROM #UserPanel a
+JOIN ipDatabase b
+	ON b.StartIPNum <= a.ip2int and a.ip2int <= b.EndIPNum
