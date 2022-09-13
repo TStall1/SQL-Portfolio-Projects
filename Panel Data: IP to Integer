@@ -1,3 +1,8 @@
+-- Convert IP Address to Integer
+-- ID website traffic sources
+
+-- Create a temp table to manipulate data without modifying original dataset 
+
 USE Project;
 
 SELECT *
